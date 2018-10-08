@@ -1,0 +1,983 @@
+<h1>WORD COUNT</h1>
+
+<form action="{% url 'count' %}">
+	<textarea cols="40" rows="5" name="fulltext"></textarea>
+	<br/><input type="submit" value="Count!"/>
+</form>
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="simon no-js">
+<!--<![endif]-->
+<!-- 
+
+SENTIO
+
+
+-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SENTIO - Die Customer Development Agentur</title>
+  <meta name="description" content="Material Agency">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- simon favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="simon-icon/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="simon-icon/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="simon-icon/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="simon-icon/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="simon-icon/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="simon-icon/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="simon-icon/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="simon-icon/favicon-16x16.png" sizes="16x16" />
+  <!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WDV8CNP');</script>
+	<!-- End Google Tag Manager -->
+  <meta name="application-name" content="&nbsp;" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="simon-icon/mstile-144x144.png" />
+
+  <!-- Font-awesome 4.7 CSS -->
+  <!-- Font-awesome 4.7 CSS -->
+  <link rel="stylesheet" href="assets/libs/font-awesome/css/font-awesome.min.css">
+  <!-- Font-ionicons 2.0.1 CSS -->
+  <link rel="stylesheet" href="assets/libs/ionicons/css/ionicons.min.css">
+  <!-- Font-material design 2.2 CSS -->
+  <link rel="stylesheet" href="assets/libs/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <!-- Font-et-line icons 1.0.0 CSS -->
+  <link rel="stylesheet" href="assets/libs/et-line/style.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/libs/mdl/material.min.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/libs/owl-carousel/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/libs/owl-carousel/dist/assets/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Other Color Schemes -->
+  <link rel="stylesheet" href="assets/css/color-yellow.css">
+  <!--<link rel="stylesheet" href="assets/css/color-red.css">-->
+  <!--<link rel="stylesheet" href="assets/css/color-yellow.css">-->
+
+  <!-- REVOLUTION STYLE SHEETS -->
+  <link rel="stylesheet" type="text/css" href="assets/libs/revolution/css/settings.css">
+  <!-- REVOLUTION LAYERS STYLES -->
+  <link rel="stylesheet" type="text/css" href="assets/libs/revolution/css/layers.css">
+  <!-- REVOLUTION NAVIGATION STYLES -->
+  <link rel="stylesheet" type="text/css" href="assets/libs/revolution/css/navigation.css">
+
+  <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+
+  <!-- Header Scripts -->
+  <!--[if lt IE 9]>
+    <script src="assets/js/vendor/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDV8CNP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- start preloader area-->
+  <div class="preloader-area">
+    <div class="preloader">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+  <!-- end preloader area -->
+
+  <!-- start site main header -->
+  <header class="main-header">
+    <div class="container">
+      <!-- start main nav -->
+      <nav class="main-nav">
+        <!-- start logo -->
+        <div class="logo">
+          <a href="index.html" class="logo-initial">
+              <img class="logo-dark" src="img/demo/logo_dark.png" alt="logo">
+              <img class="logo-lite" src="img/demo/logo_lite.png" alt="logo">
+            </a>
+          <a href="#" class="btn-menu" id="btn-menu"><i class="icono icon ion-navicon-round"></i></a>
+        </div>
+        <!-- end logo -->
+        <!-- start links -->
+        <div class="links-content">
+          <ul class="links" id="links">
+            <li><a class="page-scroll" href="index.html">Willkommen</a></li>
+            <li><a class="page-scroll" href="#services">Unsere Leistung</a>
+              <!-- ul class="subnav">
+                <li><a href="page-services-1.html">Services-1</a></li>
+                <li><a href="page-services-2.html">Services-2</a></li>
+                <li><a href="page-services-3.html">Services-3</a></li>
+              </ul -->
+            </li>              
+            <li><a class="page-scroll" href="#about">Über uns</a>
+            <li><a class="page-scroll" href="#why-chosse-us">Warum</a></li>
+            <li><a class="page-scroll" href="#process">Vorgehen</a>
+            <li><a class="page-scroll" href="#plans">Preise</a>
+              <!-- ul class="subnav">
+                <li><a href="page-about-1.html">About-1</a></li>
+                <li><a href="page-about-2.html">About-2</a></li>
+                <li><a href="page-about-3.html">About-3</a></li>
+              </ul -->
+            </li>
+            <!-- li><a class="page-scroll" href="#blog">Blogs</a -->
+              <!-- ul class="subnav">
+                <li><a href="page-blog-sidebar-top.html">Sidebar-top</a></li>
+                <li><a href="page-blog-sidebar-right.html">Sidebar-right</a></li>
+                <li><a href="page-blog-sidebar-left.html">Sidebar-left</a></li>
+                <li><a href="page-single-blog.html">Single-blog</a></li>
+              </ul -->
+            </li>
+            <li><a class="page-scroll" href="#contact">Kontakt</a>
+              <!-- ul class="subnav">
+                <li><a href="page-one-page.html">One-page</a></li>
+                <li><a href="page-landing.html">Landing</a></li>
+                <li><a href="page-single-project.html">Single-project</a></li>
+                <li><a href="page-contacts-1.html">Contact-1</a></li>
+              </ul -->
+            </li>
+            <!-- li><a class="page-scroll" href="page-elements.html">elements</a></li>
+            <li><a class="page-scroll" href="page-clients.html">Clients</a></li>
+            <li><a class="page-scroll" href="page-contacts.html">Contacts</a></li -->
+          </ul>
+        </div>
+        <!-- end links -->
+      </nav>
+      <!-- end main nav -->
+    </div>
+  </header>
+  <!-- end site main header -->
+
+  <!-- start main wrapper   -->
+  <main class="main-wrapper">
+
+    <!-- start revolution slider section-->
+    <section id="home" class="section-main">
+      <div id="simon_revslider_2_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="web-product-light-hero66" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+
+        <!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
+        <div id="simon_revslider_2" class="rev_slider simon-revslider-2 fullwidthabanner" style="display:none;" data-action="simon_revslider" data-version="5.0.7">
+          <ul>
+
+            <!-- SLIDE 1 -->
+            <li class="slider-color-schema-dark" data-index="rs-1" data-transition="fade" data-slotamount="7" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title="Intro" data-description="">
+
+              <!-- MAIN IMAGE -->
+              <img src="img/bg/customer-development-background-.jpg" alt="..." data-bgposition="center bottom" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0"
+                data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption tp-shape tp-shapewrapper overlay-dark-light tp-resizeme rs-parallaxlevel-0" id="sl1-lyr1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                data-width="full" data-height="full" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="s:300;s:300;" data-start="1000" data-basealign="slide" data-responsive_offset="on"
+                style="z-index:1;">
+              </div>
+
+              <!-- LAYER NR. 2 -->
+              <div class="tp-caption rev-title-typo tp-resizeme rs-parallaxlevel-0" id="sl1-lyr2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-54','-54','-70','-90']"
+                data-fontsize="['48','38','30','30']" data-lineheight="['36','36','36','36']" data-width="['1200','900','600','360']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
+                data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; white-space: nowrap; text-align: center; ">
+                DIE <span>CUSTOMER DEVELOPMENT</span> AGENTUR
+              </div>
+
+              <!-- LAYER NR. 3 -->
+              <div class="tp-caption rev-subtitle-typo tp-resizeme rs-parallaxlevel-0" id="sl1-lyr3" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['17','17','17','17']"
+                data-lineheight="['25','25','25','25']" data-width="['1200','640','600','360']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;"
+                data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none"
+                data-responsive_offset="on" style="z-index: 8; white-space: nowrap; text-align:center; font-weight:300;">
+                Die Kunst des lernens am Kunden.
+              </div>
+
+              <!-- LAYER NR. 4 -->
+              <div class="tp-caption" id="sl1-lyr4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['80','90','110','110']" data-width="none" data-height="none" data-whitespace="nowrap"
+                data-transform_idle="o:1;" data-transform_in="x:-50px;opacity:0;s:1000;e:Power2.easeOut;" data-transform_out="opacity:0;s:1500;e:Power4.easeIn;s:1500;e:Power4.easeIn;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                style="z-index: 3; white-space: nowrap;">
+                <a href="#services" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-highlight tp-resizeme rs-parallaxlevel-0">Mehr Erfahren</a>
+              </div>
+
+            </li>
+
+            <!-- SLIDE 2 -->
+            <li class="slider-color-schema-dark" data-index="rs-2" data-transition="fade" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="1000" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="">
+              <!-- MAIN IMAGE -->
+              <img src="img/bg/customer-development-explore-.jpg" alt="..." data-bgposition="center bottom" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0"
+                data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption slide-2 tp-shape tp-shapewrapper overlay-dark-light tp-resizeme rs-parallaxlevel-0" id="sl2-lyr1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']"
+                data-width="full" data-height="full" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="s:300;s:300;" data-start="1000" data-basealign="slide" data-responsive_offset="on"
+                style="z-index:1;">
+              </div>
+
+              <!-- LAYER NR. 2 -->
+              <div class="tp-caption rev-title-typo tp-resizeme rs-parallaxlevel-0" id="sl2-lyr2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-54','-54','-70','-90']"
+                data-fontsize="['40','38','30','30']" data-lineheight="['36','36','36','36']" data-width="['1200','900','600','360']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
+                data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 7; white-space: nowrap; text-align: center; ">
+                <span>«WER NICHT NEUGIERIG IST, ERF&Auml;HRT NICHTS.»</span>
+              </div>
+
+              <!-- LAYER NR. 3 -->
+              <div class="tp-caption rev-subtitle-typo tp-resizeme rs-parallaxlevel-0" id="sl2-lyr3" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['17','17','17','17']"
+                data-lineheight="['25','25','25','25']" data-width="['1200','640','600','360']" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;"
+                data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="none" data-splitout="none"
+                data-responsive_offset="on" style="z-index: 8; white-space: nowrap; text-align:center; font-weight:300;">
+               GOETHE
+              </div>
+
+              <!-- LAYER NR. 4 -->
+              <div class="tp-caption slide-2" id="sl2-lyr4" data-x="['center','center','center','center']" data-hoffset="[0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['80','90','110','110']" data-width="none" data-height="none" data-whitespace="nowrap"
+                data-transform_idle="o:1;" data-transform_in="x:-50px;opacity:0;s:1000;e:Power2.easeOut;" data-transform_out="opacity:0;s:1500;e:Power4.easeIn;s:1500;e:Power4.easeIn;" data-start="1000" data-splitin="none" data-splitout="none" data-responsive_offset="on"
+                style="z-index: 3; white-space: nowrap;">
+                <a href="#services" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-highlight tp-resizeme rs-parallaxlevel-0">Mehr erfahren</a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <!-- END REVOLUTION SLIDER -->
+    </section>
+    <!-- end revolution slider section-->
+
+    <!-- start services section-->
+    <section id="services" class="section-main section-space">
+      <!-- start container section-->
+      <div class="container">
+        <!-- start row section-->
+        <div class="row align-items-center">
+          <!-- start col 1 section-->
+          <div class="col-lg-12 col-xl-5 lg-pr-60">
+            <h3 class="section-title">Kundschaft.<span>Ohne sie w&auml;chst kein Unternehmen.</span></h3>
+            <p class="section-subtitle">Wer wachsen willen, muss die Bedürfnisse kennen.</p>
+            <p><strong>Erkenntnisse gewinnen:</strong> Was war zuerst, die Business-Idee oder das Kundenbedürfnis? Heute noch streiten sich die Fachleute über dieses «Chicken-Egg»-Paradoxon. Für uns ist eines klar: Es braucht beides, sowohl eine Idee als auch ein Bedürfnis, um erfolgreich zu starten. Start-ups und Projekte scheitern heute zumeist deshalb, weil der Markt angebotene Produkte gar nicht benötigt. Darum ist es umso wichtiger, möglichst früh zu erkennen und zu verstehen, was der Markt genau will.</p><p>Hierbei möchten wir Sie unterstützen – mit unserer ausgefeilten Stichproben-Methodik, die wir speziell auf Ihre Bedürfnisse ausrichten: Sie erhalten schnell erste Erkenntnisse zur Produktnachfrage und finden dank unserer Methode die richtigen Messinstrumente, um Ihr Unternehmen und das Vermarktungspotenzial besser zu skalieren.
+<p>Dazu unterscheiden wir vier Stufen bei der Kundenentwicklung.</p></div>
+          <!-- end col 1 section-->
+          <!-- start col 2 section-->
+          <div class="col-lg-12 col-xl-7">
+            <div class="row">
+
+              <!-- start bordered icon box -->
+              <div class="col-md-6">
+                <div class="icon-box-single icon-box-center">
+                  <div class="icon-box">
+                    <span class="icon-pictures"></span>
+                  </div>
+                  <div class="icon-box-content">
+                    <h4 class="icon-box-title">Discovery.</h4>
+                    <p>Haben Sie schon mal vom Beachhead-Segment gehört? Die genaue Analyse der ersten Zielgruppe ist entscheidend.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end bordered icon box -->
+
+              <!-- start bordered icon box -->
+              <div class="col-md-6">
+                <div class="icon-box-single icon-box-center">
+                  <div class="icon-box">
+                    <span class="icon-genius"></span>
+                  </div>
+                  <div class="icon-box-content">
+                    <h4 class="icon-box-title">Validation.</h4>
+                    <p>Ist das Bedürfniss auch so gross, dass der Kunde dafür etwas ausgeben würde?</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end bordered icon box -->
+
+              <!-- start bordered icon box -->
+              <div class="col-md-6">
+                <div class="icon-box-single icon-box-center">
+                  <div class="icon-box">
+                    <span class="icon-gears"></span>
+                  </div>
+                  <div class="icon-box-content">
+                    <h4 class="icon-box-title">Growth.</h4>
+                    <p>Stimmt der Akquisitions- und der «Customer Lifetime Value»-Faktor? Messen wir auch an den richtigen Stellen? Wie skalierbar sind wir eigentlich?</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end bordered icon box -->
+
+              <!-- start bordered icon box -->
+              <div class="col-md-6">
+                <div class="icon-box-single icon-box-center">
+                  <div class="icon-box">
+                    <span class="icon-layers"></span>
+                  </div>
+                  <div class="icon-box-content">
+                    <h4 class="icon-box-title">Projektmanagement</h4>
+                    <p>Das Erkennen der richtigen Bedürfnisse ist eine wichtige Sache. Aber fliessen die Erkenntnisse auch in die Unternehmensentwicklung und in die Prozesse ein?</p>
+                  </div>
+                </div>
+              </div>
+              <!-- end bordered icon box -->
+
+            </div>
+          </div>
+          <!-- end col 2 section-->
+        </div>
+        <!-- end row section-->
+      </div>
+      <!-- end container section-->
+    </section>
+    <!-- end services section-->
+
+    <!-- start client section-->
+    
+    <section id="client" class="section-space bg-secondary section-tb-border">
+      <!-- start container section-->
+      <div class="container">
+        <!-- start row section-->
+        <div class="row">
+          <!-- start owl-carousel section-->
+          <div id="client-slider" class="owl-carousel owl-theme owl-logos">
+            <!-- start item section-->
+            <div class="item">
+              <div class="single-clients">
+                <a href="http://www.taktil.ch" target="_blank"><img src="/img/client/taktil-logo.png" alt="Prototyping Partner" title="Taktil - Unser Prototyping Partner"></a>
+              </div>
+            </div>
+            <!-- end item section-->
+            <!-- start item section-->
+            <div class="item">
+              <div class="single-clients">
+                <a href="http://www.ucl.ac.uk" target="_blank"><img src="/img/client/ucl-logo.png" alt="Entrepreneurship Partner" title="UCL - Unser Academic Entrepreneurship Network"></a>
+              </div>
+            </div>
+            <!-- end item section-->
+            <!-- start item section-->
+            <div class="item">
+              <div class="single-clients">
+                <a href="http://www.clearmedia.ch" target="_blank"><img src="/img/client/clearmedia-logo.png" title="ClearMedia - Unser ICT Partner"></a>
+              </div>
+            </div>
+            <!-- end item section-->
+            <!-- start item section-->
+            <div class="item">
+              <div class="single-clients">
+                <a href="http://www.orphy.ch" target="_blank"><img src="/img/client/orphy-logo.png" title="Orphy - Unser Microsoft ASP. Engineering Partner"></a>
+              </div>
+            </div>
+            <!-- end item section-->
+            <!-- start item section-->
+            <div class="item">
+              <div class="single-clients">
+                <a href="http://www.orphis.ch" target="_blank"><img src="/img/client/orphis-logo.png" title=" Orphis - Unser Microsoft ASP. Engineering Partner"></a>
+              </div>
+            </div>
+            <!-- end item section-->
+          </div>
+          <!-- end owl-carousel section-->
+        </div>
+        <!-- end row section-->
+      </div>
+      <!-- end container section-->
+    </section>
+    <!-- end client section-->
+
+    <!-- start skills section-->
+    <section id="about" class="section-space section-tb-border">
+      <div class="container">
+        <div class="row">
+          <!-- start col 1 section-->
+          <div class="bar-progress col-md-12 col-lg-4">
+            <!-- start progress-bar section-->
+            <h4 class="progress-title">Entrepreneurship</h4>
+            <div class="progress primary">
+              <div class="progress-bar" style="width:85%;">
+                <div class="progress-value">90%</div>
+              </div>
+            </div>
+            <!-- end progress-bar section-->
+            <!-- start progress-bar section-->
+            <h4 class="progress-title">Business-Analyse</h4>
+            <div class="progress default">
+              <div class="progress-bar" style="width:63%;">
+                <div class="progress-value">63%</div>
+              </div>
+            </div>
+            <!-- end progress-bar section-->
+            <!-- start progress-bar section-->
+            <h4 class="progress-title">Methodik</h4>
+            <div class="progress default">
+              <div class="progress-bar" style="width:78%;">
+                <div class="progress-value">78%</div>
+              </div>
+            </div>
+            <!-- end progress-bar section-->
+          </div>
+          <!-- end col 1 section-->
+          <!-- start col 2 section-->
+          <div class="col-md-12 col-lg-4">
+              <p><strong>SENTIO</strong> - Die Customer Development Agentur.</p><p> Was bedeutet eigentlich «Customer Development» und warum ist das so wichtig?</p><p>Ganz einfach: ohne Kundschaft kein Wachstum! Das gilt beim Start-up, aber auch bei bereits etablierten Unternehmen. Wir bei SENTIO sind darauf bedacht, die Endkunden bereits zu Beginn miteinzubeziehen, beim ersten Funken der Idee. </p>
+          </div>
+          <!-- end col 2 section-->
+          <!-- start col 3 section-->
+          <div class="col-md-12 col-lg-4">
+            <p>Dank moderner Tools, aber auch mithilfe einfacher Methoden wie «Design Thinking» können Sie schnell erste Fortschritte auswerten. Viele Unternehmen haben noch Mühe, den richtigen «Product-Market-Fit» zu finden. Daher haben wir es uns zur Aufgabe gemacht, hier mit einer gezielten Methodik zu unterstützen.<!-- ul><li>Discovery</li><li>Validation</li><li>Growth</li></ul></p -->
+          </div>
+          <!-- end col 3 section-->
+        </div>
+      </div>
+    </section>
+    <!-- end skills section-->
+
+    <!-- start why-chosse-us section-->
+    <section id="why-chosse-us" class="section-main bg-img-0 section-space">
+      <div class="container">
+        <div class="row">
+          <!-- start col 1 section-->
+          <div class="col-lg-12 col-xl-8">
+            <!-- start row 1 section-->
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="section-title">Warum wir? <span>Warum jetzt?</span></h3>
+                <p class="section-subtitle">ES IST NIE ZU FRÜH</p>
+              </div>
+            </div>
+            <!-- end row 1 section-->
+            <!-- start row 2 section-->
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                  <!-- start menu tabs section-->
+                  <div class="mdl-tabs__tab-bar">
+                    <a href="#discovery-panel" class="mdl-tabs__tab tabs-single is-active"><span class="tab-icon icon-lightbulb"></span><span>Discovery</span></a>
+                    <a href="#validation-panel" class="mdl-tabs__tab tabs-single"><span class="tab-icon icon-pencil"></span><span>Validation</span></a>
+                      <a href="#growth-panel" class="mdl-tabs__tab tabs-single"><span class="tab-icon icon-pencil"></span><span>Growth</span></a>
+                      <a href="#project-panel" class="mdl-tabs__tab tabs-single"><span class="tab-icon icon-pencil"></span><span>Projekte</span></a>
+                  </div>
+                  <!-- end menu tabs section-->
+                  <!-- start panel-tabs 1 section-->
+                  <div class="mdl-tabs__panel panel-single is-active" id="discovery-panel">
+                    <div class="row align-items-center">
+                      <div class="col-md-12 col-lg-5">
+                        <p><strong>Wessen Problem lösen wir? Haben wir das Problem auch richtig verstanden?</strong></p>
+                        <p>Das sind Fragen, die sicher geklärt werden sollten, bevor viel Geld für die Entwicklung eingesetzt wird. Wie gehen wir vor? Zunächst führen wir mit Ihnen ein erstes Gespräch. Die erarbeitete Idee wird in Form eines Business-Modells skizziert. In einem zweiten Gespräch wird die Zielgruppe definiert und geklärt, welchen Bezug sie zur Produktidee aufweist. Danach übernehmen wir und eruieren die nötigen Massnahmen, um die angezielte Kundschaft abzuholen. Dabei kommen verschiedenste Tools und Methoden zum Einsatz, welche wir mit Ihnen im Detail besprechen.</p>
+                      </div>
+                      <div class="col-md-12 col-lg-7">
+                        <div class="row ">
+                          <div class="col-md-4 text-center">
+                            <h3>80%</h3>
+                            <p>Kosteneinsparung - durch frühzeitiges Eruieren geeigneter Produkte.</p>
+                          </div>
+                          <div class="col-md-4 text-center">
+                            <h3 class="color">5x</h3>
+                            <p>h&ouml;here Chance auf solides Wachstum.</p>
+                          </div>
+                          <div class="col-md-4 text-center ">
+                            <h3>95%</h3>
+                            <p>Feedback vom Kunden durch Interviews.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end panel-tabs 1 section-->
+                  <!-- start panel-tabs 2 section-->
+                  <div class="mdl-tabs__panel panel-single" id="validation-panel">
+                    <div class="row align-items-center">
+                      <div class="col-md-12 col-lg-6">
+                        <p><strong>Wie gross ist das Problem wirklich? Wäre der Kunde bereit, dafür zu zahlen?</strong></p>
+                        <p>Nicht jedes Problem bedarf einer kostenpflichtigen Lösung. Teilweise bestehen Probleme, für die bereits kostenlose Alternativen bestehen, mit denen sich der Kunde begnügt. Wir helfen dabei zu verstehen, wie gross das Problem ist, welches die Hintergründe sind und welche alternativen Lösungsversuche der Kunde bereits unternommen hat. Dadurch erhalten Sie erste Anhaltspunkte, wie der Markt auf eine Produktlancierung reagieren wird.</p>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-mobile"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Product-Market Fit.</h4>
+                                <p>Ist die Lösung geeignet und wird sie auch akzeptiert?</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-edit"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Business_Model Canvas.</h4>
+                                <p>Wie mache ich das Produkt wirtschaftlich tragbar?</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end panel-tabs 2 section-->
+                  <!-- start panel-tabs 3 section-->
+                  <div class="mdl-tabs__panel panel-single" id="growth-panel">
+                    <div class="row align-items-center">
+                      <div class="col-md-12 col-lg-6">
+                        <p><strong>Messen wir an der richtigen Stelle im «Funnel»? Wie kann ich das Unternehmen noch skalierbarer machen?</strong></p>
+                        <p>Die grundlegende Rechnung ist eigentlich einfach: Der Wert, der bei der Berechnung des Customer-Lifetime-Cycles – abzüglich der Ausgaben für die Akquise – ermittelt wird, muss mehr als 0 betragen (>0). <br/>
+Aber der Funnel ist zumeist komplexer, genau wie auch der Kunde selbst. Eine Analyse der Channels sowie das Bestimmen von messbaren Leistungskennzahlen (KPIs) helfen, die Akquise zu optimieren, oder ermöglichen gar das Erkennen neuer Channels, die lukrativer sind. Ziel ist es, den «Customer Life Cycle» zu verstehen. Regelmässige Tests an den verschiedenen Positionen im Funnel helfen Ihnen, den EMDZ (Ein Messwert, der zählt.) zu finden. Wir können Ihnen dabei helfen, mit unserer strukturierten Methodik.</p>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-mobile"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Growth Strategie.</h4>
+                                <p>Ob «viral», «paid» oder «stickiness» – wir helfen bei der Ausarbeitung.</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-edit"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Metrics.</h4>
+                                <p>Sind die eruierten Kennzahlen nachvollziehbar und stehen sie im Bezug zum Unternehmensumsatz?</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end panel-tabs 3 section-->
+                  <!-- start panel-tabs 4 section-->
+                  <div class="mdl-tabs__panel panel-single" id="project-panel">
+                    <div class="row align-items-center">
+                      <div class="col-md-12 col-lg-6">
+                        <p><strong>Sind die Feedbacks protokolliert? Wie priorisieren wir diese am besten?</strong></p>
+                        <p>Das Erfassen der Kundenbedürfnisse ist eine Sache. Das Ganze auch in die agile Entwicklung einzubringen, ist eine andere. Wir ergänzen und unterstützen Produkt-Owner wie auch Produktemanager bei der Erarbeitung der nächsten Lancierung auf der Grundlage von Kundenfeedbacks. Gerne übernehmen wir auch zeitlich begrenzte Projekte oder Teilprojekte.</p>
+                      </div>
+                      <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-mobile"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Unterstützend.</h4>
+                                <p>Kundenfeedbacks, Einarbeitung ins Backlog und Releasemanagement.</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+
+                          <!-- start bordered icon box -->
+                          <div class="col-md-12 col-lg-12">
+                            <div class="icon-box-single icon-box-left">
+                              <div class="icon-box">
+                                <span class="icon-edit"></span>
+                              </div>
+                              <div class="icon-box-content">
+                                <h4 class="icon-box-title">Full</h4>
+                                <p>Teilprojekte, Zeitlich begrenzte Projekte.</p>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end bordered icon box -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end panel-tabs 4 section-->
+                </div>
+              </div>
+            </div>
+            <!-- end row 2 section-->
+          </div>
+          <!-- end col 1 section-->
+        </div>
+      </div>
+    </section>
+    <!-- end why-chosse-us section-->
+
+    <!-- start phrase section-->
+    <section id="phrase" class="bg-img-1">
+      <div class="overlayer overlay-blue">
+        <div class="container section-space">
+          <div class="row">
+            <!-- start col 1 section-->
+            <div class="col-md-12">
+              <div class="section-space text-center">
+                <h3 class="section-title text-white ">«Wer die Bedürfnisse des Menschen erkennt und richtig handelt, der wird bald ein reicher Mann sein.»</h3>
+                <p class="section-subtitle text-white ">Walter B. Walser</p>
+              </div>
+            </div>
+            <!-- end col 1 section-->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end phrase section-->
+
+    <!-- start process section-->
+    <section id="process" class="section-main section-space section-tb-border">
+      <div class="container">
+        <!--start row 1 section-->
+        <div class="row justify-content-md-center">
+          <!-- start col section-->
+          <div class="col-md-12 col-xl-10 text-center">
+            <h3 class="section-title">Wie gehen wir vor</h3>
+            <p class="section-subtitle">Transparenz ist uns wichtig</p>
+          </div>
+          <!-- end col section-->
+        </div>
+        <!-- end row 1 section-->
+        <!-- start row 2 section-->
+        <div class="row">
+          <!-- start col 1 section-->
+          <div class="col-lg-12 col-xl-4">
+            <!-- start bordered icon box -->
+            <div class="icon-box-single icon-box-left">
+              <div class="icon-box">
+                <span class="icon-chat"></span>
+              </div>
+              <div class="icon-box-content">
+                <h4 class="icon-box-title"><strong>1.</strong>Gespräch (Gratis, 1h).</h4>
+                <p>Kurze Evaluation der Geschäfts- oder Produktidee mithilfe des Lean- oder Business-Modells Canvas.</p>
+              </div>
+            </div>
+            <!-- end bordered icon box -->
+          </div>
+          <!-- end col 1 section-->
+          <!-- start col 2 section-->
+          <div class="col-lg-12 col-xl-4">
+            <!-- start bordered icon box -->
+            <div class="icon-box-single icon-box-left">
+              <div class="icon-box">
+                <span class="icon-tools"></span>
+              </div>
+              <div class="icon-box-content">
+                <h4 class="icon-box-title"><strong>2.</strong>Fokus.</h4>
+                <p>Zielsetzungen und Rahmenbedingungen werden gesetzt. So können wir eine Offerte ausarbeiten, die genau auf Ihre Bedürfnisse ausgerichtet ist.</p>
+              </div>
+            </div>
+            <!-- end bordered icon box -->
+          </div>
+          <!-- end col 2 section-->
+          <!-- start col 3 section-->
+          <div class="col-lg-12 col-xl-4">
+            <!-- start bordered icon box -->
+            <div class="icon-box-single icon-box-left">
+              <div class="icon-box">
+                <span class="icon-document"></span>
+              </div>
+              <div class="icon-box-content">
+                <h4 class="icon-box-title"><strong>3.</strong> Offerte.</h4>
+                <p>Aufzeigen der Kosten für die Dienstleistung. Besprechung des weiteren Vorgehens.</p>
+              </div>
+            </div>
+            <!-- end bordered icon box -->
+          </div>             
+        </div>
+        <!-- end row 2 section-->
+      </div>
+    </section>
+    <!-- end process section-->
+
+    <!-- start plans section-->
+    <section id="plans" class="bg-img-7">
+      <div class="overlayer overlay-light section-space">
+        <div class="container">
+          <!-- start row 1 section-->
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="section-title">Unsere Pakete</h3>
+              <p class="section-subtitle">Mit weniger zu mehr</p>
+            </div>
+          </div>
+          <!-- end row 1 section-->
+          <!-- start row 2 section-->
+          <div class="row">
+            <!-- start col 1 section -->
+            <div class="col-lg-12 col-xl-4">
+              <!-- start item-price -->
+              <div class="price-table">
+                <span class="icon-mobile size-48"></span>
+                <h4 class="price-title">Erst Beratung</h4>
+                <p>Kurze Evaluation der Geschäfts- oder Produktidee mithilfe des Lean- oder Business-Modells Canvas.<br><br><strong>Dauer: ca. 1h</strong></p>
+                <h4 class="price-valor">Gratis</h4>
+              </div>
+              <!-- end item-price -->
+            </div>
+            <!-- end col 1 section -->
+            <!-- start col 2 section -->
+            <div class="col-lg-12 col-xl-4">
+              <!-- start item-price -->
+              <div class="price-table active">
+                <span class="icon-browser size-48"></span>
+                <h4 class="price-title">Discovery, Validation</h4>
+                <p>Evaluieren der Zielgruppe. Definition der Personas. Analyse der Zielgruppen-Aktivitäten. Festlegung der Akquise-Strategie. Ausführung mit an&shy;schliessend&shy;er Befragung sowie deren Auswertung.<br><br><strong>Dauer: je nach Umfang</strong></p>
+                <h4 class="price-valor">Auf Anfrage</h4>
+              </div>
+              <!-- end item-price -->
+            </div>
+            <!-- end col 2 section -->
+            <!-- start col 3 section -->
+            <div class="col-lg-12 col-xl-4">
+              <!-- start item-price -->
+              <div class="price-table">
+                <span class="icon-laptop size-48"></span>
+                <h4 class="price-title">Growth</h4>
+                <p>IST-Analyse der Marketing-Aktivitäten und der bisherigen Kundenakquise sowie des Onboarding-Prozesses. Ausarbeitung von Prozessoptimierungen nach Lean-Management. Umsetzung sowie Projekt&shy;management, sofern erwünscht.<br><br><strong>Dauer: je nach Umfang</strong></p>
+                <h4 class="price-valor">Auf Anfrage</h4>
+              </div>
+              <!-- end item-price -->
+            </div>
+            <!-- end col 3 section -->
+          </div>
+          <!-- end row 2 section-->
+        </div>
+      </div>
+    </section>
+    <!-- end plans section-->
+
+    <script> /*
+    <!-- start section-->
+    <section class="bg-grad-primary">
+      <div class="container section-space">
+        <!-- start row 1 section-->
+        <div class="row">
+          <!-- start col 1 section-->
+          <div class="col-md-12">
+            <div class="text-center">
+              <h3 class="section-title text-white">Wollen Sie noch mehr zu uns erfahren?</h3>
+            </div>
+          </div>
+          <!-- end col 1 section-->
+        </div>
+        <!-- start row 1 section-->
+      </div>
+    </section>
+    <!-- end section-->
+    
+    <!-- start blog section -->
+    <section id="blog" class="section-main section-space">
+      <div class="container ">
+        <!-- start row 1 section-->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3 class="section-title">digital experience <span>basic price table and options.</span></h3>
+            <p class="section-subtitle">all news in our blog</p>
+          </div>
+        </div>
+        <!-- end row 1 section-->
+        <!-- start row 2 section-->
+        <div class="row">
+          <!-- start carousel blog-->
+          <div id="blog-carousel" class="owl-carousel col-md-12">
+            <!-- start blog-item 1-->
+            <div class="blog-item">
+              <div class="blog-table">
+                <div class="blog-title">
+                  <h4>new web design trends</h4>
+                </div>
+                <div class="autor-date">
+                  <h6><span class="blog-autor">jhon doe</span><span class="blog-date">10 december 16</span></h6>
+                </div>
+                <div class="blog-img">
+                  <img src="http://placehold.it/457x310" alt="...">
+                </div>
+                <div class="blog-detail">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto expedita est, optio nobis fugit impedit, pariatur earum in, ipsum, suscipit sit.</p>
+                  <a href="#" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-black">read more</a>
+                </div>
+              </div>
+            </div>
+            <!-- end blog-item 1-->
+            <!-- start blog-item 2-->
+            <div class="blog-item">
+              <div class="blog-table">
+                <div class="blog-title">
+                  <h4>minimalistic design forever</h4>
+                </div>
+                <div class="autor-date">
+                  <h6><span class="blog-autor">jhon doe</span><span class="blog-date">23 september 17</span></h6>
+                </div>
+                <div class="blog-img">
+                  <img src="http://placehold.it/457x310" alt="...">
+                </div>
+                <div class="blog-detail">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto expedita est, optio nobis fugit impedit, pariatur earum in, ipsum, suscipit sit.</p>
+                  <a href="#" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-black">read more</a>
+                </div>
+              </div>
+            </div>
+            <!-- end blog-item -->
+            <!-- start blog-item 3-->
+            <div class="blog-item">
+              <div class="blog-table">
+                <div class="blog-title">
+                  <h4>hipster style in web</h4>
+                </div>
+                <div class="autor-date">
+                  <h6><span class="blog-autor">jhon doe</span><span class="blog-date">05 october 17</span></h6>
+                </div>
+                <div class="blog-img">
+                  <img src="http://placehold.it/457x310" alt="...">
+                </div>
+                <div class="blog-detail">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto expedita est, optio nobis fugit impedit, pariatur earum in, ipsum, suscipit sit.</p>
+                  <a href="#" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-black">read more</a>
+                </div>
+              </div>
+            </div>
+            <!-- end blog-item -->
+          </div>
+          <!-- end carousel blog-->
+        </div>
+        <!-- end row 2 section-->
+      </div>
+    </section>*/</script>
+    <!-- end blog section-->
+
+    <!-- start section-->
+    <section class="bg-secondary">
+      <div class="container section-space">
+        <div class="row justify-content-center">
+          <!-- start col 1 section-->
+          <div class="col-lg-12 col-xl-10">
+            <div class="text-center">
+              <h3 class="section-title text-white">Wollen Sie noch mehr &uuml;ber uns erfahren? </h3>
+              <a href="mailto:info@sentio.ch?subject=Gratis%20Gespräch%20vereinbaren" class="mdl-button mdl-js-button mdl-button--raised btn-default btn-highlight">Gratisgespräch vereinbaren</a>
+            </div>
+          </div>
+          <!-- end col 1 section-->
+        </div>
+      </div>
+    </section>
+    <!-- end section-->
+
+  </main>
+  <!-- end main wrapper   -->
+
+  <!-- start main footer -->
+  <footer id="contact" class="main-footer ">
+    <div class="container">
+
+      <!-- start row 1 section-->
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-8 ">
+          <div class="contact section-space">
+            <div class="row">
+              <!-- start col 1 section-->
+              <div class="col-sm-4 col-md-4">
+                <div class=" item-contact">
+                  <h4>Rufen Sie uns an!</h4>
+                  <p>CH +41 (0)44 545 54 60</p>
+                  <p>UK +44 (0)744 519 50 65</p>
+                </div>
+              </div>
+              <!-- end col 1 section-->
+              <!-- start col 2 section-->
+              <div class="col-sm-4 col-md-4">
+                <div class=" item-contact">
+                  <h4>Adresse</h4>
+                  <p>Zimmerlistrasse 6, 8004 Zürich</p>
+                </div>
+              </div>
+              <!-- end col 2 section-->
+              <!-- start col 3 section-->
+              <div class="col-sm-4 col-md-4">
+                <div class=" item-contact">
+                  <h4>E-Mail</h4>
+                  <p>info@sentio.ch</p>
+                </div>
+              </div>
+              <!-- end col 3 section-->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- start row 1 section-->
+      <!-- start row 2 section-->
+      <!-- div class="row">
+        <div class="col-12 footer-social-links">
+          <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+          <a href="#"><i class="zmdi zmdi-twitter"></i></a>
+          <a href="#"><i class="zmdi zmdi-tumblr"></i></a>
+          <a href="#"><i class="zmdi zmdi-behance"></i></a>
+          <a href="#"><i class="zmdi zmdi-pinterest"></i></a>
+        </div>
+      </div -->
+      <!-- end row 2 section-->
+      <!-- start row 3 section-->
+      <div class="col-12 footer-version footer-text section-space-b">
+        <p>© SENTIO, simon <span>v 1.0.</span></p>
+        <p>all Rights Reserved by <strong>SENTIO</strong>.</p>
+      </div>
+      <!-- end row 3 section-->
+    </div>
+  </footer>
+  <!-- end main footer -->
+
+  <!-- footer script start  -->
+  <script>
+    window.jQuery || document.write('<script type="text/javascript" src="assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+
+  <script type="text/javascript" src="assets/libs/mdl/material.min.js"></script>
+  <script type="text/javascript" src="assets/libs/bootstrap/js/tether.min.js"></script>
+  <script type="text/javascript" src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/libs/owl-carousel/dist/owl.carousel.min.js"></script>
+
+  <!-- REVOLUTION JS FILES -->
+  <script type="text/javascript" src="assets/libs/revolution/js/jquery.themepunch.tools.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+  <script type="text/javascript" src="assets/libs/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+  <!-- jquery easing -->
+  <script type="text/javascript" src="assets/js/vendor/jquery.easing.1.3.js"></script>
+  <!-- jQuery Main. -->
+  <script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+
+</html>
